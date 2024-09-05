@@ -21,13 +21,13 @@
 
         <div class="right-section">
             <div class="question-card">
-                <p>What is clean sport?</p>
+                <p id="question-text">What is clean sport?</p>
             </div>
             <div class="options-grid">
-                <button class="option" data-option="A">A) Sport that permits any substance for better performance.</button>
-                <button class="option" data-option="B">B) Sport that bans prohibited substances, ensuring fairness and integrity.</button>
-                <button class="option" data-option="C">C) Sport exclusive to amateur athletes.</button>
-                <button class="option" data-option="D">D) Sport centered only on fitness without rules.</button>
+                <button class="option" data-option="A" id="optionA">A) Sport that permits any substance for better performance.</button>
+                <button class="option" data-option="B" id="optionB">B) Sport that bans prohibited substances, ensuring fairness and integrity.</button>
+                <button class="option" data-option="C" id="optionC">C) Sport exclusive to amateur athletes.</button>
+                <button class="option" data-option="D" id="optionD">D) Sport centered only on fitness without rules.</button>
             </div>
             <button class="continue-button" id="continueButton" disabled><b>CHECK</b></button>
         </div>
@@ -37,6 +37,7 @@
         const correctAnswer = 'B'; // Correct answer is option B
         let selectedOption = null; // Store selected option
         let hasAnswered = false; // Track if user has selected an option
+        let hasReadQuestion = false; // Flag to check if question has been read
 
         // Function to handle option selection
         function selectOption(option) {
@@ -57,7 +58,7 @@
         });
 
         // Function to handle Check/Continue button click
-        document.getElementById('continueButton').addEventListener('click', () => {
+        function checkAnswer() {
             if (!selectedOption) return; // Do nothing if no option is selected
 
             const options = document.querySelectorAll('.option');
@@ -86,11 +87,16 @@
             } else {
                 window.location.href = "index.html"; // Redirect to index.html on continue click
             }
-        });
+        }
 
-        // Voice control part (if needed)
+        document.getElementById('continueButton').addEventListener('click', checkAnswer);
+
+        // Voice control part
         function enableVoiceControl() {
-            readQuestionAndOptions();
+            if (!hasReadQuestion) {
+                readQuestionAndOptions(); // Read the question and options aloud
+                hasReadQuestion = true; // Set flag to true after reading
+            }
 
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = 'en-US';
@@ -108,31 +114,42 @@
         }
 
         function handleVoiceCommand(command) {
-            if (hasAnswered) {
-                // If the user has already answered, only listen for "continue"
-                if (command.includes("continue")) {
-                    const continueButton = document.getElementById('continueButton');
-                    if (!continueButton.disabled) {
-                        window.location.href = "index.html"; // Navigate to the next page
-                    }
-                }
-                return; // Stop further processing if the user has answered
-            }
-
             const options = document.querySelectorAll('.option');
-            let selectedOption = null;
+            let voiceSelectedOption = null;
 
-            // Match command to the options (A, B, C, D)
-            options.forEach(option => {
-                if (command.includes(option.getAttribute('data-option').toLowerCase())) {
-                    selectedOption = option;
-                }
-            });
-
-            if (selectedOption) {
-                selectOption(selectedOption);
-                hasAnswered = true; // Mark that the user has answered
+            // Match command to the options (A, B, C, D) without selecting by default
+            if (command.includes("a")) {
+                voiceSelectedOption = options[0]; // Option A
+            } else if (command.includes("b")) {
+                voiceSelectedOption = options[1]; // Option B
+            } else if (command.includes("c")) {
+                voiceSelectedOption = options[2]; // Option C
+            } else if (command.includes("d")) {
+                voiceSelectedOption = options[3]; // Option D
             }
+
+            // Only select option if one was clearly spoken (not during "check")
+            if (voiceSelectedOption) {
+                selectOption(voiceSelectedOption);
+            }
+
+            // If the user says "check", trigger the check answer function
+            if (command.includes("check")) {
+                checkAnswer();
+            }
+        }
+
+        // Function to read the question and options aloud using Speech Synthesis
+        function readQuestionAndOptions() {
+            const questionText = document.getElementById('question-text').innerText;
+            const optionA = document.getElementById('optionA').innerText;
+            const optionB = document.getElementById('optionB').innerText;
+            const optionC = document.getElementById('optionC').innerText;
+            const optionD = document.getElementById('optionD').innerText;
+
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = `The question is: ${questionText}. The options are: ${optionA}, ${optionB}, ${optionC}, and ${optionD}.`;
+            speechSynthesis.speak(speech);
         }
 
         // Enable voice control on page load if the mode is voice
@@ -142,5 +159,5 @@
             enableVoiceControl();
         }
     </script>
-</body>
+ </body>
 </html>
