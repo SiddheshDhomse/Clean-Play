@@ -1,0 +1,138 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', sans-serif; 
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: #007bff; 
+    color: white; 
+    padding: 15px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+}
+
+.header .text {
+    display: flex;
+    flex-direction: column; 
+    padding-left: 40px; 
+    margin-right: auto; 
+}
+
+.header .text .unit-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .text .unit-title {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.header .icon {
+    font-size: 24px;
+    margin-right: 40px; 
+    margin-left: auto; 
+}
+
+.main-content {
+    display: flex; 
+    padding: 20px;
+    background-color: white; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content */
+    flex: 1;
+    padding-right: 20px;
+}
+
+.above-image {
+    background-color: #ffffff; /* White background */
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 80%; /* Adjust the width as necessary */
+    border: 2px solid #e0e0e0; /* Gray border */
+}
+.white-card {
+    background-color: #ffffff; /* White background */
+    border: 2px solid #e0e0e0; /* Gray border */
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 80%; /* Adjust the width as necessary */
+}
+
+
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    max-width: 100%; /* Adjusted to make the image slightly larger */
+    border-radius: 10px;
+}
+
+.card-section {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-top: 90px;
+}
+
+.card {
+    background-color: #e0e0e0;
+    padding: 20px; /* Adjusted padding for better spacing */
+    border-radius: 8px; /* Slightly rounded corners for a modern look */
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+}
+
+.card b {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px; /* Increased margin for better separation */
+    font-size: 16px; /* Slightly increased font size for emphasis */
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5; /* Improved readability */
+}
+.continue-button {
+    background-color: #007bff;
+    color: white;
+    border: none; 
+    border-radius: 5px; 
+    padding: 15px 90px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 70px; 
+    align-self: center; 
+    transition: background-color 0.3s; 
+}
+
+.continue-button:hover {
+    background-color: #0056b3; 
+}
+
+
+

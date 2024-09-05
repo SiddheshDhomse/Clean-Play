@@ -1,0 +1,76 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.main-content {
+    display: flex;
+    padding: 20px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+}
+.left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content */
+    flex: 1;
+    padding-right: 20px;
+}
+
+.above-image {
+    background-color: #ffffff; /* White background */
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 80%; 
+    border: 2px solid #e0e0e0; /* Gray border */
+}
+
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    max-width: 50%; /* Adjusted to make the image slightly larger */
+    border-radius: 10px;
+}
+
+.card-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-top: 90px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid #6c757d;
+    background: transparent;
+    color: #6c757d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background: #6c757d;
+    color: white;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
+}

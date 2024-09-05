@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="special.css">
+    <title>Document</title>
+    <style>
+        /* Add any additional styles needed here */
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+        .mt-3 {
+            margin-top: 20px;
+        }
+        .mr-2 {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="left-section">
+            <div class="above-image white-card">
+                <b>Are you specially abled ?</b>
+            </div>
+            <div class="image-section">
+                <img src="Clipped_image_20240903_194527.png" alt="Character Image">
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="mt-3">
+                <button class="btn mr-2" id="yesButton">Yes</button>
+                <button class="btn" id="noButton">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('yesButton').addEventListener('click', () => {
+            window.location.href = "module.html?mode=voice";
+        });
+
+        document.getElementById('noButton').addEventListener('click', () => {
+            window.location.href = "module.html?mode=regular";
+        });
+    </script>
+</body>
+</html>
+

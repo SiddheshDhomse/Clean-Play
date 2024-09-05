@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="module.css">
+    <title>Module 2</title>
+</head>
+<body>
+    <div class="header">
+        <div class="text">
+            <div class="unit-number">Unit 2</div>
+            <div class="unit-title">Why is doping dangerous?</div>
+        </div>
+        <div class="icon">📄</div>
+    </div>
+
+    <div class="main-content">
+        <div class="left-section">
+            <div class="above-image white-card">
+                <b>Why is doping dangerous?</b>
+            </div>
+            <div class="image-section">
+                <img src="images/1725412398249-removebg-preview.png" alt="Character Image">
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="card">
+                <p>Provisional Suspension: The athlete or other person is temporarily banned from participating in any competition or activity.</p>
+            </div>
+            <div class="card">
+                <p>Ineligibility: The athlete or other person is not allowed to compete or participate in any other activity.</p>
+            </div>
+            <div class="card">
+                <p>Disqualification of results: The results of an athlete during a particular period, competition, or event are invalidated.</p>
+            </div>
+            <a href="letsLearn.html">
+            <button class="continue-button" id="continueButton"><b>CONTINUE</b></button>
+        </a>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+
+        if (mode === 'voice') {
+            enableVoiceMode();
+        }
+
+        function readContent() {
+            const content = document.querySelector('.main-content').innerText;
+            const speech = new SpeechSynthesisUtterance(content);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function provideNavigationInstructions() {
+            const instructions = "Say 'CONTINUE' to proceed.";
+            const speech = new SpeechSynthesisUtterance(instructions);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function enableVoiceMode() {
+            readContent();
+            provideNavigationInstructions();
+            
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+
+            recognition.onresult = function(event) {
+                const command = event.results[0][0].transcript.toLowerCase();
+                handleVoiceCommand(command);
+            };
+
+            recognition.onend = () => {
+                recognition.start(); // Automatically start listening again
+            };
+
+            recognition.start();
+        }
+
+        function handleVoiceCommand(command) {
+            if (command.includes("continue")) {
+                window.location.href = "letsLearn.html?mode=voice";
+            } else {
+                alert("Command not recognized. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

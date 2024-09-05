@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-box {
+            width: 500px; /* Increased width */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-box h2 {
+            margin-bottom: 20px;
+        }
+        .input-box {
+            margin-bottom: 20px; /* Increased margin for better spacing */
+            text-align: left; /* Align text to the left */
+        }
+        .input-box label {
+            display: block; /* Ensure label is displayed as a block element */
+            font-weight: bold;
+            margin-bottom: 5px; /* Space between label and input */
+        }
+        .input-box input, .input-box select {
+            width: calc(100% - 20px); /* Full width minus padding */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0069d9;
+        }
+        .login-link {
+            margin-top: 20px;
+        }
+        .login-link p {
+            margin: 0;
+        }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2>Create Your Profile</h2>
+            <form id="profileForm" onsubmit="return validateForm()" method="POST">
+                <div class="input-box">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-box">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+                <div class="input-box">
+                    <label for="sport">Sport</label>
+                    <input type="text" id="sport" name="sport" placeholder="Enter your sport" required>
+                </div>
+                <div class="input-box">
+                    <label for="level-of-competition">Level of Competition</label>
+                    <select id="level-of-competition" name="level-of-competition" required>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter a secure password" required>
+                </div>
+                <div class="input-box">
+                    <label for="mobile-number">Mobile Number</label>
+                    <input type="tel" id="mobile-number" name="mobile-number" placeholder="Enter your mobile number" required>
+                </div>
+                <a href="special.html">
+                <button type="button" class="btn btn-primary">Continue</button>
+            </a>
+            </form>
+            <div class="login-link">
+                <p>Have an account? <a href="#">LOG IN</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

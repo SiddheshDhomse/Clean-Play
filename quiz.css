@@ -1,0 +1,50 @@
+/* Flexbox layout for the right section */
+.right-section {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin-left: 30px;
+   flex: 1;
+   margin-right: 60px;
+}
+
+.question-card {
+   background-color: white;
+   border: 2px solid #e0e0e0;
+   padding: 15px 200px;
+   border-radius: 15px;
+   text-align: center;
+   width: 300px;
+   margin-bottom: 30px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-card p {
+   font-size: 18px;
+   font-weight: bold;
+}
+
+/* Grid layout for 2x2 option buttons */
+.options-grid {
+   
+   display: grid;
+   grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+   grid-gap: 20px; /* Space between the buttons */
+}
+
+.option {
+   background-color: white;
+   border: 2px solid #e0e0e0;;
+   padding: 15px;
+   border-radius: 10px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   text-align: center;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+   background-color: #d1d1d1;
+}

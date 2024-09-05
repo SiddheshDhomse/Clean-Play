@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="module.css">
+    <title>Module</title>
+</head>
+<body>
+    <div class="header">
+        <div class="text">
+            <div class="unit-number">Unit 1</div>
+            <div class="unit-title">Introduction to clean sport</div>
+        </div>
+        <div class="icon">📄</div>
+    </div>
+
+    <div class="main-content">
+        <div class="left-section">
+            <div class="above-image white-card">
+                <b>What is clean sport?</b>
+            </div>
+            <div class="image-section">
+                <img src="images/1725412398249-removebg-preview.png" alt="Character Image">
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="card">
+                <p><b>Integrity:</b> Adhering to moral and ethical principles, staying true to the rules and spirit of the sport.</p>
+            </div>
+            <div class="card">
+                <p><b>Fairness:</b> Ensuring equal opportunities for all athletes, with competition based on natural talent and effort.</p>
+            </div>
+            <div class="card">
+                <p><b>Respect:</b> Honoring opponents, teammates, and the sport itself by competing honestly and upholding sportsmanship.</p>
+            </div>
+            <a href="module2.html">
+            <button class="continue-button" id="continueButton"><b>CONTINUE</b></button>
+        </a>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+
+        if (mode === 'voice') {
+            enableVoiceMode();
+        }
+
+        function readContent() {
+            const content = document.querySelector('.main-content').innerText;
+            const speech = new SpeechSynthesisUtterance(content);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function provideNavigationInstructions() {
+            const instructions = "Say 'CONTINUE' to move to the next page.";
+            const speech = new SpeechSynthesisUtterance(instructions);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function enableVoiceMode() {
+            readContent();
+            provideNavigationInstructions();
+            
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+
+            recognition.onresult = function(event) {
+                const command = event.results[0][0].transcript.toLowerCase();
+                handleVoiceCommand(command);
+            };
+
+            recognition.onend = () => {
+                recognition.start(); // Automatically start listening again
+            };
+
+            recognition.start();
+        }
+
+        function handleVoiceCommand(command) {
+            if (command.includes("continue")) {
+                window.location.href = "module2.html?mode=voice";
+            } else {
+                alert("Command not recognized. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+

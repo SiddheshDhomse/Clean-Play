@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="module.css">
+    <title>Lets Learn</title>
+</head>
+<body>
+  
+
+    <div class="main-content" style = "margin-top: 90px;">
+        <div class="left-section" style="margin-left: 150px;">
+            <div class="above-image white-card">
+                <b>Lets have a small quiz...</b>
+            </div>
+            <div class="image-section">
+                <img src="images/1725474365901-removebg-preview.png" alt="Character Image" style="max-width: 80%; margin-top: 20px;">
+            </div>
+        </div>
+        <div class="card-section"> 
+            <a href="quiz.html">
+            <button class="continue-button" id="continueButton" style="margin-right: 290px; margin-bottom: 60px;"><b>BEGIN</b></button>
+        </a>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+
+        if (mode === 'voice') {
+            enableVoiceMode();
+        }
+
+        function readContent() {
+            const content = document.querySelector('.main-content').innerText;
+            const speech = new SpeechSynthesisUtterance(content);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function provideNavigationInstructions() {
+            const instructions = "Say 'BEGIN' to move to the next page.";
+            const speech = new SpeechSynthesisUtterance(instructions);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+
+        function enableVoiceMode() {
+            readContent();
+            provideNavigationInstructions();
+            
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+
+            recognition.onresult = function(event) {
+                const command = event.results[0][0].transcript.toLowerCase();
+                handleVoiceCommand(command);
+            };
+
+            recognition.onend = () => {
+                recognition.start(); // Automatically start listening again
+            };
+
+            recognition.start();
+        }
+
+        function handleVoiceCommand(command) {
+            if (command.includes("begin")) {
+                window.location.href = "quiz.html?mode=voice";
+            } else {
+                alert("Command not recognized. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
